@@ -1,3 +1,6 @@
+/**
+ * @author Redoo Networks GmbH (SW)
+ */
 import axios from "axios";
 
 class FlexAPI {
