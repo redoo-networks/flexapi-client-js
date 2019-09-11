@@ -16,8 +16,8 @@ class Listing {
                 let result = [];
                 console.log(response);
                 for(let i in response.entries) {
-                    let record = new CRMRecord(i);
-                    record.setData(response.entries[i]);
+                    let record = new CRMRecord(i, moduleName);
+                    record.initData(response.entries[i]);
 
                     result.push(record)
                 }
