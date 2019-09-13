@@ -1,0 +1,17 @@
+variables:
+  SONAR_URL: "https://sonarcube.redoo.network:9001"
+  SONAR_LOGIN: "fca2c553f26f2a8d5ea5479df82ad9155890051f"
+  SOURCE_PATH: "."
+  PROJECT_KEY: "FlexAPI-Client-JS"
+  
+stages:
+  - test
+
+sonarqube_master_job:
+  stage: test
+  only:
+    - master
+  when: manual    
+  image: maven:3.3.9-jdk-8-alpine
+  script:
+    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=$SOURCE_PATH
