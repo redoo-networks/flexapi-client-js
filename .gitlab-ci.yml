@@ -2,7 +2,7 @@ variables:
   SONAR_URL: "https://sonarcube.redoo.network:9001"
   SONAR_LOGIN: "fca2c553f26f2a8d5ea5479df82ad9155890051f"
   SOURCE_PATH: "."
-  PROJECT_KEY: '"FlexAPI-Client-JS"'
+  PROJECT_KEY: "FlexAPIClientJS"
   
 stages:
   - test
