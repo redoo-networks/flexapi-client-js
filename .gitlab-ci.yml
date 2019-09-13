@@ -12,6 +12,6 @@ sonarqube_master_job:
   only:
     - master
   when: manual    
-  image: maven:3.3.9-jdk-8-alpine
+  image: skilldlabs/sonar-scanner
   script:
-    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=$SOURCE_PATH
+    - sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=$SOURCE_PATH
