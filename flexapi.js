@@ -2,6 +2,8 @@
  * @author Redoo Networks GmbH (SW)
  */
 import axios from "axios";
+import CRMRecord from "./components/record";
+import Module from "./components/module";
 
 class FlexAPI {
     setCRMUrl(url) {
@@ -12,13 +14,17 @@ class FlexAPI {
         this.token = token;
     }
 
+    module(moduleName) {
+        return new Module(moduleName);
+    };
+
     get(action, parameters) {
         return this.request('GET', action, parameters);
     }
 
     post(action, parameters) {
-        return this.request('GET', action, parameters);
-    }
+        return this.request('POST', action, parameters);
+    };
 
     request(method, action, parameters) {
         return new Promise((resolve, reject) => {
@@ -43,3 +49,4 @@ class FlexAPI {
 }
 
 export default new FlexAPI();
+

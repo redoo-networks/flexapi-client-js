@@ -1,16 +1,35 @@
+import FlexAPI from '../flexapi'
+
 export default class Record {
 
-    constructor(recordId) {
+    constructor(recordId, moduleName = '') {
         this.recordId = recordId;
+        this.moduleName = moduleName;
     }
 
-    setData(data) {
+    initData(data) {
         this.data = data;
     }
 	
     getId() {
         return this.recordId;
     }
+
+    updateRecord(fields) {
+        if(this.moduleName === '') {
+            throw 'updateRecord() requires a not empty moduleName parameter in Record constructor';
+        }
+
+        var parameters = {
+            'fields': fields
+        };
+
+        FlexAPI.post('records/' + this.moduleName + '/' + this.recordId, parameters).then((response) => {
+            resolve();
+        });
+
+    }
+
 
     get(field) {
         if(typeof this.data !== 'undefined') {
