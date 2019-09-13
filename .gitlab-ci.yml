@@ -14,4 +14,4 @@ sonarqube_master_job:
   image: newtmitch/sonar-scanner
   when: manual    
   script:
-    - sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=$SOURCE_PATH
+    - sonar-scanner -X -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=$SOURCE_PATH
