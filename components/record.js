@@ -7,6 +7,7 @@ export default class Record {
     setData(data) {
         this.data = data;
     }
+	
     getId() {
         return this.recordId;
     }
@@ -19,4 +20,4 @@ export default class Record {
         throw 'Field ' + field + ' not found in Record !';
     }
 
-};
+}

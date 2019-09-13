@@ -3,7 +3,7 @@ import CRMRecord from './record'
 
 class Listing {
     list(moduleName, fields, limit = 25, page = 1, orderByField = null, sortorder = 'ASC') {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const parameters = {
                 fields: fields,
                 limit: limit,
@@ -14,7 +14,7 @@ class Listing {
 
             FlexAPI.get('listing/list/' + moduleName, parameters).then((response) => {
                 let result = [];
-                console.log(response);
+
                 for(let i in response.entries) {
                     let record = new CRMRecord(i);
                     record.setData(response.entries[i]);

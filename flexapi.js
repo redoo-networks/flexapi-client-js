@@ -6,18 +6,19 @@ import axios from "axios";
 class FlexAPI {
     setCRMUrl(url) {
         this.url = url + '/modules/FlexAPI/api.php';
-    };
+    }
+	
     setToken(token) {
         this.token = token;
-    };
+    }
 
     get(action, parameters) {
         return this.request('GET', action, parameters);
-    };
+    }
 
     post(action, parameters) {
         return this.request('GET', action, parameters);
-    };
+    }
 
     request(method, action, parameters) {
         return new Promise((resolve, reject) => {
@@ -33,7 +34,7 @@ class FlexAPI {
             axios.post(this.url, data)
                 .then((response) => {
                     resolve(response.data.data);
-                }, (err) => {
+                }, () => {
                     reject();
                 });
 
