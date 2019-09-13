@@ -11,7 +11,7 @@ sonarqube_master_job:
   stage: test
   only:
     - master
+  image: newtmitch/sonar-scanner
   when: manual    
-  image: skilldlabs/sonar-scanner
   script:
     - sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=$SOURCE_PATH
