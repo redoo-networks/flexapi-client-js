@@ -16,7 +16,7 @@ class FlexAPI {
 
     module(moduleName) {
         return new Module(moduleName);
-    };
+    }
 
     get(action, parameters) {
         return this.request('GET', action, parameters);
@@ -24,7 +24,7 @@ class FlexAPI {
 
     post(action, parameters) {
         return this.request('POST', action, parameters);
-    };
+    }
 
     request(method, action, parameters) {
         return new Promise((resolve, reject) => {
