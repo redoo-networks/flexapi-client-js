@@ -2,7 +2,6 @@
  * @author Redoo Networks GmbH (SW)
  */
 import axios from "axios";
-import CRMRecord from "./components/record";
 import Module from "./components/module";
 
 class FlexAPI {

@@ -5,12 +5,12 @@ variables:
   PROJECT_KEY: "FlexAPIClientJS"
   
 stages:
-  - test
+  - sonarqube
 
 sonarqube_master_job:
-  stage: test
+  stage: sonarqube
   only:
-    - master
+    - sonarqube
   image: docker.redoo.cloud:5043/gitlab-ci:php7.3
   when: manual    
   script:
