@@ -8,10 +8,11 @@ import Module from "./components/module";
 class FlexAPI {
     setCRMUrl(url) {
         this.url = url + '/modules/FlexAPI/api.php';
-    };
+    }
+	
     setToken(token) {
         this.token = token;
-    };
+    }
 
     module(moduleName) {
         return new Module(moduleName);
@@ -19,7 +20,7 @@ class FlexAPI {
 
     get(action, parameters) {
         return this.request('GET', action, parameters);
-    };
+    }
 
     post(action, parameters) {
         return this.request('POST', action, parameters);
@@ -39,7 +40,7 @@ class FlexAPI {
             axios.post(this.url, data)
                 .then((response) => {
                     resolve(response.data.data);
-                }, (err) => {
+                }, () => {
                     reject();
                 });
 
