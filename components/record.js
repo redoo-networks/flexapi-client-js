@@ -27,12 +27,6 @@ export default class Record {
         return FlexAPI.post('records/' + this.moduleName + '/' + this.recordId, parameters).then((response) => {
             return response;
         });
-
-        // return new Promise((resolve) => {
-        //     FlexAPI.post('records/' + this.moduleName + '/' + this.recordId, parameters).then((response) => {
-        //         resolve(response);
-        //     });
-        // });
     }
 
 
