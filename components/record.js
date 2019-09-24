@@ -24,10 +24,13 @@ export default class Record {
             'fields': fields
         };
 
-        FlexAPI.post('records/' + this.moduleName + '/' + this.recordId, parameters).then((response) => {
-            resolve();
-        });
+        return new Promise((resolve, reject) => {
 
+            FlexAPI.post('records/' + this.moduleName + '/' + this.recordId, parameters).then((response) => {
+                resolve(response);
+            });
+
+        })
     }
 
 
