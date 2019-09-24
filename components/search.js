@@ -2,6 +2,44 @@ import FlexAPI from '../flexapi'
 import CRMRecord from "./record";
 
 class Search {
+    simple(query, moduleName = null) {
+        return new Promise((resolve, reject) => {
+            const parameters = {
+                query: query,
+                module: moduleName
+            };
+
+            FlexAPI.get('search/simple', parameters).then((response) => {
+                let result = {
+                    'total': 0,
+                    'records': []
+                };
+
+                for(let modulename in response) {
+                    if(response.hasOwnProperty(modulename)) {
+                        result.records[modulename] = [];
+
+                        for (let recordIndex in response[modulename].result) {
+                            if (response[modulename].result.hasOwnProperty(recordIndex)) {
+                                result.total++;
+
+                                let record = new CRMRecord(response[modulename].result[recordIndex].crmid, modulename);
+                                record.initData(response[modulename].result[recordIndex]);
+
+                                result.records[modulename].push(record);
+                            }
+                        }
+
+                    }
+
+                }
+
+                resolve(result);
+            });
+
+        });
+    }
+
     complexe(moduleName, fields, condition, orderByField = null, limit = 100, offset = 0, referenceFields = null) {
         return new Promise((resolve, reject) => {
             const parameters = {
