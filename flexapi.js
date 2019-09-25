@@ -14,9 +14,15 @@ class FlexAPI {
     }
 
     setCRMLogin(username, password) {
-        this.request('login/login', { username: username, password:password}).then((response) => {
-            console.log(response);
-        })
+        return new Promise((resolve, reject) => {
+            this.post('login/login', {username: username, password: password}).then((response) => {
+                if (typeof response.token !== 'undefined') {
+                    this.setToken(response.token);
+
+                    resolve(response.token);
+                }
+            })
+        });
     }
 
     setBasicAuth(username, password) {
@@ -49,12 +55,12 @@ class FlexAPI {
             }
             data.params = parameters;
 
-            let parameters = {};
+            let options = {};
             if(typeof this.basicAuth !== 'undefined') {
-                parameters['auth'] = this.basicAuth;
+                options['auth'] = this.basicAuth;
             }
 
-            axios.post(this.url, data, parameters)
+            axios.post(this.url, data, options)
                 .then((response) => {
                     resolve(response.data.data);
                 }, () => {
