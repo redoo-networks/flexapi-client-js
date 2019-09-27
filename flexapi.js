@@ -46,6 +46,19 @@ class FlexAPI {
 
     request(method, action, parameters) {
         return new Promise((resolve, reject) => {
+            this.requestRAW(method, action, parameters).then((response) => {
+                if(typeof response.data.tokenexpire !== 'undefined' && response.data.tokenexpire !== false) {
+                    localStorage.setItem('api-expire', response.data.tokenexpire);
+                }
+
+                resolve(response.data.data);
+            });
+        });
+    }
+
+    requestRAW(method, action, parameters, options = {}) {
+
+        return new Promise((resolve, reject) => {
             let data = {};
             data.action = action;
             data.method = method.toUpperCase();
@@ -55,14 +68,13 @@ class FlexAPI {
             }
             data.params = parameters;
 
-            let options = {};
             if(typeof this.basicAuth !== 'undefined') {
                 options['auth'] = this.basicAuth;
             }
 
             axios.post(this.url, data, options)
                 .then((response) => {
-                    resolve(response.data.data);
+                    resolve(response);
                 }, () => {
                     reject();
                 });
