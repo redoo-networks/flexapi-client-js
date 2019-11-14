@@ -19,8 +19,6 @@ sonarqube_master_job:
 deploy:
   stage: packaging
   only:
-    - packaging
-  only:
     - /^v.*$/
   except: 
     - branches
