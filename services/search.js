@@ -1,5 +1,5 @@
 import FlexAPI from '../flexapi'
-import CRMRecord from "./record";
+import CRMRecord from "../models/record";
 
 class Search {
     simple(query, moduleName = null) {

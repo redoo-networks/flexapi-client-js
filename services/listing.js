@@ -1,5 +1,5 @@
 import FlexAPI from '../flexapi'
-import CRMRecord from './record'
+import CRMRecord from '../models/record'
 
 class Listing {
     conditionalList(moduleName, fields, condition, limit = 25, page = 1, orderByField = null, sortorder = 'ASC') {

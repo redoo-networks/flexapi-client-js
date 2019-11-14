@@ -1,7 +1,6 @@
 image: docker.redoo.cloud/gitlab-ci:php7.3
 
 variables:
-  SONAR_URL: "https://sonarcube.redoo.network:9001"
   SOURCE_PATH: "."
   PROJECT_KEY: "FlexAPIClientJS"
   
@@ -14,7 +13,7 @@ sonarqube_master_job:
   only:
     - master
   script:
-    - sonar-scanner -X -Dsonar.projectBaseDir=. -Dsonar.login=$SONAR_TOKEN
+    - sonar-scanner -X -Dsonar.projectBaseDir=. -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST
     
 deploy:
   stage: packaging

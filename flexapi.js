@@ -2,7 +2,7 @@
  * @author Redoo Networks GmbH (SW)
  */
 import axios from "axios";
-import Module from "./components/module";
+import Module from "./models/module";
 
 class FlexAPI {
     setCRMUrl(url) {

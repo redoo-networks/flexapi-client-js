@@ -25,4 +25,4 @@ Listing.list(
 
 Find all options of FlexAPI here:
 
-https://wiki.redoo-networks.com/display/FLEXAPI/FlexAPI+Home?src=sidebar
+https://reference.redoo-networks.com/flexapi-clients/javascript/getting-started.html
