@@ -1,6 +1,6 @@
 import FlexAPI from '../flexapi'
 
-export default class Record {
+class FlexAPIRecord {
 
     constructor(recordId, moduleName = '') {
         this.recordId = recordId;
@@ -43,3 +43,5 @@ export default class Record {
     }
 
 }
+
+export default FlexAPIRecord;

@@ -1,7 +1,7 @@
 import FlexAPI from '../flexapi'
 import CRMRecord from './record'
 
-export default class module {
+class FlexAPIModule {
 
     constructor(moduleName) {
         this.moduleName = moduleName;
@@ -51,3 +51,5 @@ export default class module {
     }
 
 }
+
+export default FlexAPIModule;
