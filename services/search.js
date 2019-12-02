@@ -1,7 +1,7 @@
 import FlexAPI from '../flexapi'
 import CRMRecord from "../models/record";
 
-class Search {
+class APIServiceSearch {
     simple(query, moduleName = null) {
         return new Promise((resolve, reject) => {
             const parameters = {
@@ -71,4 +71,4 @@ class Search {
     }
 }
 
-export default new Search();
+export default new APIServiceSearch();
