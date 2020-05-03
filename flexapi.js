@@ -3,14 +3,45 @@
  */
 import axios from "axios";
 import Module from "./models/module";
+import search from "./services/search";
+import listing from "./services/listing";
+import weekplanner from "./services/weekplanner";
 
 class FlexAPI {
+    setOnAccessDeniedCallback(callback) {
+        this.onAccessDeniedCb = callback;
+    }
+
     setCRMUrl(url) {
         this.url = url + '/modules/FlexAPI/api.php';
     }
-	
+
+    setCustomerToken(customerToken) {
+        this.customerToken = customerToken;
+        console.log(customerToken, this.customerToken);
+    }
+
     setToken(token) {
         this.token = token;
+    }
+
+    loginCustomer(email, password) {
+        return new Promise((resolve, reject) => {
+            this.post('customerportal/login', {
+                email: email,
+                password: password
+            }).then(function(response) {
+                resolve(response);
+            });
+        });
+
+    }
+
+    loginCustomerByKey(email, key) {
+        this.post('customerportal/login', {
+            email: email,
+            key: key
+        })
     }
 
     setCRMLogin(username, password) {
@@ -57,12 +88,15 @@ class FlexAPI {
     }
 
     requestRAW(method, action, parameters, options = {}) {
-
         return new Promise((resolve, reject) => {
             let data = {};
             data.action = action;
             data.method = method.toUpperCase();
 
+            if(typeof this.customerToken !== 'undefined') {
+                data['customer-mode'] = true;
+                data['customer-token'] = this.customerToken;
+            }
             if(typeof this.token !== 'undefined') {
                 data['user-token'] = this.token;
             }
@@ -74,12 +108,30 @@ class FlexAPI {
 
             axios.post(this.url, data, options)
                 .then((response) => {
+                    if(response.data.result == 403 && this.onAccessDeniedCb) {
+                        this.onAccessDeniedCb();
+                    }
+
                     resolve(response);
                 }, () => {
                     reject();
                 });
 
         });
+    }
+
+    service(service) {
+        switch(service.toLowerCase()) {
+            case 'weekplanner':
+                return weekplanner;
+                break;
+            case 'listing':
+                return listing;
+                break;
+            case 'search':
+                return search;
+                break;
+        }
     }
 }
 
