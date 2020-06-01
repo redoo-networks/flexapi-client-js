@@ -7,6 +7,10 @@ class FlexAPIModule {
         this.moduleName = moduleName;
     }
 
+    getName() {
+        return this.moduleName;
+    }
+
     getRecord(crmId) {
         return new Promise((resolve, reject) => {
             FlexAPI.get('records/' + this.moduleName + '/' + +crmId).then((response) => {

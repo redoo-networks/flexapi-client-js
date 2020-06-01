@@ -1,5 +1,6 @@
 import FlexAPI from '../flexapi'
 import CRMRecord from "../models/record";
+import FlexAPIRecordlist from "../models/recordlist";
 
 class APIServiceSearch {
     simple(query, moduleName = null) {
@@ -52,11 +53,14 @@ class APIServiceSearch {
             };
 
             FlexAPI.get('search/complexe', parameters).then((response) => {
-                let result = {
+                let result = new FlexAPIRecordlist(moduleName);
+                result.setTotalCount(response.total);
+                result.setRecordData(response.entries);
+                /*
                     'total': +response.total,
                     'records': []
-                };
-
+                };*/
+/*
                 for(let i in response.entries) {
                     let record = new CRMRecord(response.entries[i].crmid, moduleName);
                     record.initData(response.entries[i]);
@@ -64,6 +68,8 @@ class APIServiceSearch {
                     result.records.push(record)
                 }
 
+                let resultList = ;
+*/
                 resolve(result);
             });
 

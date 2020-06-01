@@ -4,13 +4,17 @@ class FlexAPIRecord {
 
     constructor(recordId, moduleName = '') {
         this.recordId = recordId;
+
         this.moduleName = moduleName;
     }
 
     initData(data) {
         this.data = data;
     }
-	
+	getData() {
+        return this.data;
+    }
+
     getId() {
         return this.recordId;
     }
