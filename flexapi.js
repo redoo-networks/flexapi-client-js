@@ -6,6 +6,7 @@ import Module from "./models/module";
 import search from "./services/search";
 import listing from "./services/listing";
 import weekplanner from "./services/weekplanner";
+import ping from "./services/ping";
 
 class FlexAPI {
     setOnAccessDeniedCallback(callback) {
@@ -130,6 +131,9 @@ class FlexAPI {
                 break;
             case 'search':
                 return search;
+                break;
+            case 'ping':
+                return ping;
                 break;
         }
     }

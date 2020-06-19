@@ -13,8 +13,8 @@ class FlexAPIModule {
 
     getRecord(crmId) {
         return new Promise((resolve, reject) => {
-            FlexAPI.get('records/' + this.moduleName + '/' + +crmId).then((response) => {
-                let result = new CRMRecord(+crmId, this.moduleName);
+            FlexAPI.get('records/' + this.moduleName + '/' + crmId).then((response) => {
+                let result = new CRMRecord(crmId, this.moduleName);
                 result.initData(response);
 
                 resolve(result);
