@@ -57,6 +57,10 @@ class FlexAPI {
         });
     }
 
+    setTimezone(timezone) {
+        this.timezone = timezone;
+    }
+
     setBasicAuth(username, password) {
         this.basicAuth = {
             username: username,
@@ -93,6 +97,9 @@ class FlexAPI {
             let data = {};
             data.action = action;
             data.method = method.toUpperCase();
+            if(this.timezone) {
+                data.timezone = this.timezone;
+            }
 
             if(typeof this.customerToken !== 'undefined') {
                 data['customer-mode'] = true;

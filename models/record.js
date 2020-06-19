@@ -1,4 +1,5 @@
 import FlexAPI from '../flexapi'
+import Comment from './comment'
 
 class FlexAPIRecord {
 
@@ -6,17 +7,60 @@ class FlexAPIRecord {
         this.recordId = recordId;
 
         this.moduleName = moduleName;
+        this.comments = null;
     }
 
     initData(data) {
         this.data = data;
     }
-	getData() {
+
+    getData() {
         return this.data;
     }
 
     getId() {
         return this.recordId;
+    }
+
+    /**
+     * var comment = new FlexAPIComment();
+     * comment.setCommentContent(this.ticketcontent);
+     *
+     * @param commentObj
+     */
+    createComment(commentObj) {
+        return new Promise((resolve, reject) => {
+
+            FlexAPI.post('records/comments/' + this.moduleName + '/' + this.recordId, commentObj.getData()).then(response => {
+                this.comments.unshift(new Comment(response));
+                resolve();
+            });
+
+        });
+    }
+
+    getComments(onlyPublic, force) {
+        if(force) this.comments = null;
+
+        if(typeof onlyPublic === 'undefined') onlyPublic = true;
+
+        return new Promise((resolve, reject) => {
+            if(this.comments) {
+                resolve(this.comments);
+                return;
+            }
+
+            FlexAPI.get('records/comments/' + this.moduleName + '/' + this.recordId + (onlyPublic ? '/public' : '')).then((response) => {
+                this.comments = [];
+
+                for(let comment of response) {
+                    this.comments.push(new Comment(comment));
+                }
+
+                resolve(this.comments);
+            });
+
+        });
     }
 
     updateRecord(fields) {
