@@ -1,28 +1,9 @@
-# FlexAPI - JS Client
+# FlexxAPI - JS Client
 
-Using:
+This repository contains a JavaScript client to connect FlexxAPI CRM HTTP Interface of Redoo Networks GmbH.
 
-```js
-// Initialization
-FlexAPI.setToken('AccessToken');
-FlexAPI.setCRMUrl('https://crmurl');
-```
+It provides functions for general functions of FlexxAPI and can easily extended by custom one.
 
-### ListView
-```js
-Listing.list(
-    'ModuleName',
-    ['fieldname1', 'fieldname2'],
-    100,
-    1,
-    'fieldname1',
-    'ASC'
-).then((response) => {
-    // Response is of type Record[]
-});
-
-```
-
-Find all options of FlexAPI here:
+## Documentation
 
 https://reference.redoo-networks.com/flexapi-clients/javascript/getting-started.html
