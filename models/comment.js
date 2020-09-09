@@ -1,6 +1,6 @@
 import FlexAPI from '../flexapi'
 import moment from "moment";
-import nl2br from "utils/nl2br";
+import nl2br from "../utils/nl2br";
 
 class FlexAPIComment {
 
