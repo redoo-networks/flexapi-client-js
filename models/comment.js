@@ -1,7 +1,6 @@
 import FlexAPI from '../flexapi'
 import moment from "moment";
-import {gravatarFilter} from "../../redoospace/filter/gravatar";
-import {nl2br} from "../../redoospace/filter/nl2br";
+import nl2br from "../utils/nl2br";
 
 class FlexAPIComment {
 
@@ -17,10 +16,6 @@ class FlexAPIComment {
 
     setCommentContent(content) {
         this.commentData['commentcontent'] = content;
-    }
-
-    getAuthorAvatarUrl() {
-        return gravatarFilter('ich@stefanwarnat.de');
     }
 
     isFromCustomer() {
