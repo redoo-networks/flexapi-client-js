@@ -22,17 +22,6 @@ class FlexAPIModule {
         })
     }
 
-    updateRecord(crmId, fields) {
-        var parameters = {
-            'fields': fields
-        };
-
-        FlexAPI.post('records/' + this.moduleName + '/' + crmId, parameters).then((response) => {
-            resolve();
-        });
-
-    }
-
     createRecord(fields, noResponse = false) {
         return new Promise((resolve, reject) => {
 
