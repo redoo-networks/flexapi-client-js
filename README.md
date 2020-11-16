@@ -6,4 +6,4 @@ It provides functions for general functions of FlexxAPI and can easily extended 
 
 ## Documentation
 
-https://reference.redoo-networks.com/flexapi-clients/javascript/getting-started.html
+https://docs.redoo-networks.com/flexapi-clients/javascript/getting-started.html
