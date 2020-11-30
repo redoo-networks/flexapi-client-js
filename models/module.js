@@ -22,6 +22,29 @@ class FlexAPIModule {
         })
     }
 
+    createInventoryRecord(fields, products, groupTaxes, noResponse = false) {
+        return new Promise((resolve, reject) => {
+
+            let parameters = {
+                fields: fields,
+                products: products,
+                group_taxes: groupTaxes
+            };
+
+            FlexAPI.post('records/create_inventory/' + this.moduleName, parameters).then((response) => {
+
+                if(noResponse === false) {
+                    this.getRecord(response.id).then((record) => {
+                        resolve(record);
+                    });
+                } else {
+                    resolve(response.id);
+                }
+
+            });
+        });
+    }
+
     createRecord(fields, noResponse = false) {
         return new Promise((resolve, reject) => {
 
