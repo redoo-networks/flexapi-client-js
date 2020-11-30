@@ -3,6 +3,44 @@ import CRMRecord from "../models/record";
 import FlexAPIRecordlist from "../models/recordlist";
 
 class APIServiceSearch {
+    fulltextsearch(query, moduleName = null) {
+        return new Promise((resolve, reject) => {
+            const parameters = {
+                query: query,
+                module: moduleName
+            };
+
+            FlexAPI.get('search/fulltext', parameters).then((response) => {
+                let result = {
+                    'total': 0,
+                    'records': []
+                };
+
+                for(let modulename in response) {
+                    if(response.hasOwnProperty(modulename)) {
+                        result.records[modulename] = [];
+
+                        for (let recordIndex in response[modulename].result) {
+                            if (response[modulename].result.hasOwnProperty(recordIndex)) {
+                                result.total++;
+
+                                let record = new CRMRecord(response[modulename].result[recordIndex].crmid, modulename);
+                                record.initData(response[modulename].result[recordIndex]);
+
+                                result.records[modulename].push(record);
+                            }
+                        }
+
+                    }
+
+                }
+
+                resolve(result);
+            });
+
+        });
+    }
+
     simple(query, moduleName = null) {
         return new Promise((resolve, reject) => {
             const parameters = {
@@ -48,7 +86,8 @@ class APIServiceSearch {
                 fields: fields,
                 condition: condition,
                 orderby: orderByField,
-                limit: 0,
+                limit: limit,
+                offset: offset,
                 referencefields: referenceFields
             };
 
