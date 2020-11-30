@@ -1,4 +1,4 @@
-image: docker.redoo.cloud/gitlab-ci:php7.3
+image: docker.redoo-networks.com/redoo-networks/docker-ci-base
 
 variables:
   SOURCE_PATH: "."
