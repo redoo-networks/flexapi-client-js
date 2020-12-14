@@ -80,6 +80,22 @@ class FlexAPIRecord {
 
         })
     }
+    updateInventoryRecord(fields, products, groupTaxes) {
+        return new Promise((resolve, reject) => {
+
+            let parameters = {
+                fields: fields,
+                products: products,
+                group_taxes: groupTaxes
+            };
+
+            FlexAPI.post('records/update_inventory/' + this.moduleName + '/' + this.recordId, parameters).then((response) => {
+
+                resolve(this);
+
+            });
+        });
+    }
 
 
     get(field) {
