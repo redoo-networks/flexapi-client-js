@@ -1,6 +1,6 @@
-import FlexAPI from '../flexapi'
-import CRMRecord from "../models/record";
-import FlexAPIRecordlist from "../models/recordlist";
+import FlexAPI from '../flexapi.js'
+import CRMRecord from "../models/record.js";
+import FlexAPIRecordlist from "../models/recordlist.js";
 
 class APIServiceSearch {
     fulltextsearch(query, moduleName = null) {

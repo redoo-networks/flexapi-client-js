@@ -1,5 +1,5 @@
-import FlexAPI from '../flexapi'
-import Comment from './comment'
+import FlexAPI from '../flexapi.js'
+import Comment from './comment.js'
 
 class FlexAPIRecord {
 

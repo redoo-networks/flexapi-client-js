@@ -1,5 +1,5 @@
-import FlexAPI from '../flexapi'
-import CRMRecord from './record'
+import FlexAPI from '../flexapi.js'
+import CRMRecord from './record.js'
 
 class FlexAPIModule {
 

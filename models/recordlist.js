@@ -1,5 +1,5 @@
-import FlexAPI from '../flexapi'
-import FlexAPIRecord from "./record";
+import FlexAPI from '../flexapi.js'
+import FlexAPIRecord from "./record.js";
 
 class FlexAPIRecordlist {
 
