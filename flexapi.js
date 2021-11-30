@@ -2,11 +2,11 @@
  * @author Redoo Networks GmbH (SW)
  */
 import axios from "axios";
-import Module from "./models/module";
-import search from "./services/search";
-import listing from "./services/listing";
-import weekplanner from "./services/weekplanner";
-import ping from "./services/ping";
+import Module from "./models/module.js";
+import search from "./services/search.js";
+import listing from "./services/listing.js";
+import weekplanner from "./services/weekplanner.js";
+import ping from "./services/ping.js";
 
 class FlexAPI {
     setOnAccessDeniedCallback(callback) {
@@ -47,13 +47,16 @@ class FlexAPI {
 
     setCRMLogin(username, password) {
         return new Promise((resolve, reject) => {
-            this.post('login/login', {username: username, password: password}).then((response) => {
-                if (typeof response.token !== 'undefined') {
-                    this.setToken(response.token);
+            this.post('login/login', {username: username, password: password})
+                .then((response) => {
+                    if (typeof response.token !== 'undefined') {
+                        this.setToken(response.token);
 
-                    resolve(response.token);
-                }
-            })
+                        resolve(response.token);
+                    }
+                }, (error) => {
+                    console.error('Error during setCRMLogin ', error);
+                });
         });
     }
 
@@ -76,23 +79,25 @@ class FlexAPI {
         return this.request('GET', action, parameters);
     }
 
-    post(action, parameters) {
+    async post(action, parameters) {
         return this.request('POST', action, parameters);
     }
 
-    request(method, action, parameters) {
-        return new Promise((resolve, reject) => {
-            this.requestRAW(method, action, parameters).then((response) => {
-                if(typeof response.data.tokenexpire !== 'undefined' && response.data.tokenexpire !== false) {
-                    localStorage.setItem('api-expire', response.data.tokenexpire);
-                }
+    async request(method, action, parameters) {
+            return new Promise((resolve, reject) => {
+                this.requestRAW(method, action, parameters).then((response) => {
+                    if(typeof response.data.tokenexpire !== 'undefined' && response.data.tokenexpire !== false) {
+                        localStorage.setItem('api-expire', response.data.tokenexpire);
+                    }
 
-                resolve(response.data.data);
+                    resolve(response.data.data);
+                }, e => {
+                    console.log('ERROR', e);
+                });
             });
-        });
     }
 
-    requestRAW(method, action, parameters, options = {}) {
+    async requestRAW(method, action, parameters, options = {}) {
         return new Promise((resolve, reject) => {
             let data = {};
             data.action = action;
@@ -121,8 +126,8 @@ class FlexAPI {
                     }
 
                     resolve(response);
-                }, () => {
-                    reject();
+                }, (error) => {
+                    reject(error);
                 });
 
         });
@@ -132,16 +137,12 @@ class FlexAPI {
         switch(service.toLowerCase()) {
             case 'weekplanner':
                 return weekplanner;
-                break;
             case 'listing':
                 return listing;
-                break;
             case 'search':
                 return search;
-                break;
             case 'ping':
                 return ping;
-                break;
         }
     }
 }

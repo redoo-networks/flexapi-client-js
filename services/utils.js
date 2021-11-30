@@ -1,4 +1,4 @@
-import FlexAPI from '../flexapi'
+import FlexAPI from '../flexapi.js'
 
 class Utils {
     existingUniqueValues(module_name, field_name) {

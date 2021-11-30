@@ -1,5 +1,5 @@
-import FlexAPI from '../flexapi'
-import CRMRecord from '../models/record'
+import FlexAPI from '../flexapi.js'
+import CRMRecord from '../models/record.js'
 
 class Ping {
     send() {

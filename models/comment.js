@@ -1,6 +1,4 @@
-import FlexAPI from '../flexapi'
-import moment from "moment";
-import nl2br from "../utils/nl2br";
+import nl2br from "../utils/nl2br.js";
 
 class FlexAPIComment {
 
@@ -43,7 +41,7 @@ class FlexAPIComment {
     }
 
     getCreatedDate() {
-        return moment(this.commentData['created']);
+        return this.commentData['created'];
     }
 
     get(field) {
