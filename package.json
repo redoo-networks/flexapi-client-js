@@ -9,6 +9,6 @@
 	"version": "0.1.5",
 	"type": "module",
 	"dependencies": {
-		"axios": "^0.24.0"
+		"axios": "^1.6.0"
 	}
 }
