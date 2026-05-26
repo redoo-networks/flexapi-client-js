@@ -4,7 +4,7 @@ This repository contains a JavaScript client to connect FlexxAPI CRM HTTP Interf
 
 It provides functions for general functions of FlexxAPI and can easily extended by custom one.
 
-## Examles
+## Examples
 You found some examples within examples folder.  
 You only needs to clone config.dist.js and rename to config.js and adjust configuration  
 ## Documentation
